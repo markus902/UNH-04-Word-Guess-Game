@@ -11,23 +11,33 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class=" col-md-12 d-flex justify-content-center">
-                <h1 class=>Awesome Word Game</h1>
+            <div class=" col-md-6 d-flex justify-content-center">
+                <img src="./images/headline.png" alt="" class="img-fluid">
+            </div>    
+            
+            <div class="col-md-6 justify-content-center">
+                <h1 class="m-4 pl-4 pt-4">Awesome Word Game</h1>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 justify-content-center">
             
                 <h2>Press any key to get started!</h2>
 
                 <br>
 
+                <h2 id="wins">Wins</h2>
+
                 <h2>Your Guess</h2>
 
                 <br>
 
-                <h2 class="guess"></h2>
+                <h2 id="current_letter"></h2>
+
+                <br>
+
+                <h2 id="current_word"></h2>
 
                 <br>
 
@@ -35,7 +45,7 @@
 
                 <br>
 
-                <h2 class="guess_remaining">_</h2>
+                <h2 id="guess_remaining">_</h2>
 
                 <br>
 
@@ -53,6 +63,7 @@
     </div>
 
 
-<script></script>
+    <script type="text/javascript" src="./javascript/game.js"></script>
+
 </body>
 </html>
