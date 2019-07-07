@@ -15,6 +15,9 @@ let remainingOutput = document.getElementById("guess_remaining");
 let wordOutput = document.getElementById("current_word");
 let usedOutput = document.getElementById("letters_used");
 
+
+
+
 // Select a word from array and split it into array
 
 wordChoice = wordData[Math.floor(Math.random() * wordData.length)];
@@ -32,6 +35,9 @@ console.log(characters);
 wordOutput.textContent = wordOutput.textContent = empty.join(" ");
 
 // Capturing current key pressed plus remaining guesses output them in html
+
+
+
 
 
     document.onkeyup = function(event) {
@@ -84,14 +90,18 @@ wordOutput.textContent = wordOutput.textContent = empty.join(" ");
       
       // check if game was won and count and output wins
     
-      if (empty.indexOf("_")){
-        
+      console.log(empty.indexOf("_"));
+
+      if(empty.indexOf("_") < 0){
+        wins++;  
+        console.log("Wins" + wins);
+
+        // reset game when player won
       }
-    
+
+      winOutput.textContent = wins;
+        
     }
-
-
-   
 
       
 
