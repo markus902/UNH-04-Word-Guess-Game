@@ -1,11 +1,11 @@
-let guess = null;
-let wordData = ["Homer Simpson","Marge Simpson","Bart Simpson","Lisa Simpson"];
+let guess = String;
+let wordData = ["Homer","Marge","Bart","Lisa"];
 let wordChoice
-let currentWord
 let wins = 0;
+let lettersUsed = [];
 let guessRemaining = 10;
-let empty = [];
 let checkVar = 0;
+let empty = [];
 
 // Output Variables
 
@@ -13,19 +13,25 @@ let guessOutput = document.getElementById("current_letter");
 let winOutput = document.getElementById("wins");
 let remainingOutput = document.getElementById("guess_remaining");
 let wordOutput = document.getElementById("current_word");
+let usedOutput = document.getElementById("letters_used");
 
 // Select a word from array and split it into array
 
 wordChoice = wordData[Math.floor(Math.random() * wordData.length)];
 console.log(wordChoice);
 
-var characters = wordChoice.split("");
+let characters = wordChoice.split("");
 console.log(characters);
 
+// Creating array with empty characters to show length of word
+ 
+  for (i = 0; i < characters.length; i++){
+  empty.push("_");
+  }
 
+wordOutput.textContent = wordOutput.textContent = empty.join(" ");
 
 // Capturing current key pressed plus remaining guesses output them in html
-// for (guessRemaining = 10; guessRemaining < 1; i++){
 
 
     document.onkeyup = function(event) {
@@ -43,22 +49,51 @@ console.log(characters);
 
       // Check if selected letter is part of characters array
 
-         console.log(empty);
-         console.log(guess);
-      
-        checkVar = characters.indexOf(guess);
+         //console.log(empty);
+         
+         
+        // console.log(characters);
+    
+        checkVar = characters.indexOf(String(guess));  // why does this return false?????????
         console.log(checkVar);
 
         empty[checkVar] = guess;
       
-        checkVar = characters.indexOf(guess, checkVar+1);
+      // Check for 2 occurances of guess in characters array
 
+        checkVar = characters.indexOf(guess, checkVar+1);
         empty[checkVar] = guess;
 
+      // Check for 3 occurances of guess in characters array
 
-        wordOutput.textContent = empty;
+      checkVar = characters.indexOf(guess, checkVar+2);
+      empty[checkVar] = guess;
 
+      console.log(empty);
+      
+      // Output word with remaining gaps
+
+      wordOutput.textContent = empty.join(" ");
+      
+      // store letters already guessed in array and output it
+    
+      lettersUsed.push(guess);
+      console.log(lettersUsed);
+      
+      usedOutput.textContent = lettersUsed;
+      
+      // check if game was won and count and output wins
+    
+      if (empty.indexOf("_")){
+        
       }
+    
+    }
+
+
+   
+
+      
 
         //  for (i = 0; i < characters.length; i++){
 
