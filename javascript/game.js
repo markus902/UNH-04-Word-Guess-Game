@@ -1,11 +1,13 @@
 let guess = String;
-let wordData = ["Homer","Marge","Bart","Lisa"];
+let wordData = ["Homer Simpson","Marge Simpson","Bart Simpson","Lisa Simpson","Maggie Simpson","Santa's Little Helper","Snowball","Abraham Simpson","Apu Nahasapeemapetilon","Barney Gumble","Bleeding Gums Murphy","Chief Clancy Wiggum","Dewey Largo","Eddie","Edna Krabappel","Itchy","Janey Powell","Jasper Beardsley","Kent Brockman","Krusty The Clown","Lenny Leonard","Lou","Martin Prince","Marvin Monroe","Milhouse Van Houten","Moe Szyslak","Mr. Burns","Ned Flanders","Otto Mann","Patty Bouvier","Ralph Wiggum","Reverend Timothy Lovejoy","Scratchy","Selma Bouvier","Seymour Skinner","Sherri","Sideshow Bob","Terri","Todd Flanders","Waylon Smithers","Wendell Borton","Bernice Hibbert","Blue-Haired Lawyer","Carl Carlson","Dolph Starbeam","Dr. Julius Hibbert","Dr. Nick Riviera","Elizabeth Hoover","Hans Moleman","Helen Lovejoy","Herman Hermann","Jacqueline Bouvier","Jimbo Jones","Kearney Zzyzwicz","Lionel Hutz","Maude Flanders[D]","Mayor Joe Quimby","Nelson Muntz","Princess Kashmir","Professor Jonathan Frink","Rainier Wolfcastle","Rod Flanders","Sideshow Mel","Troy McClure","Wise Guy","Agnes Skinner","Akira","Comic Book Guy","Groundskeeper Willie","Jake The Barber","Judge Roy Snyder","Kang","Kodos","Luann Van Houten","Mr. Teeny","Snake Jailbird","Arnie Pye","Bumblebee Man","Drederick Tatum","Kirk Van Houten","Lunchlady Doris","Old Jewish Man","Ruth Powers","Sea Captain","Squeaky-Voiced Teen","Baby Gerald","Cletus Spuckler","Luigi Risotto","Miss Springfield","Superintendent Gary Chalmers","Alice Glick","Database","The Rich Texan","Sarah Wiggum","Üter Zörker","Brandine Spuckler","Disco Stu","Fat Tony","Louie","Mona Simpson","Legs","Gil Gunderson","Manjula Nahasapeemapetilon","Lindsey Naegle","Mrs. Vanderbilt","Artie Ziff","Duffman","Gloria Jailbird","The Yes Guy","Cookie Kwan","Johnny Tightlips","Rabbi Hyman Krustofski","Crazy Cat Lady","Booberella","Capital City Goofball","Leprechaun","Ling Bouvier","Julio","Mrs. Muntz","Chazz Busby","Roger Meyers,Jr.","Shauna Chalmers","Kumiko Albertson","Surly Duff"];
+let wordDataLower = wordData;
 let wordChoice
 let wins = 0;
 let lettersUsed = [];
 let guessRemaining = 10;
-let checkVar = 0;
+let checkVar;
 let empty = [];
+let characters = [];
 
 // Output Variables
 
@@ -15,125 +17,107 @@ let remainingOutput = document.getElementById("guess_remaining");
 let wordOutput = document.getElementById("current_word");
 let usedOutput = document.getElementById("letters_used");
 
+//swiching dataset to all lower case letter
+
+wordDataLower = wordData.map(function toUpper(item) {
+  return item.toLowerCase();
+});
 
 
+
+function start(){
 
 // Select a word from array and split it into array
 
-wordChoice = wordData[Math.floor(Math.random() * wordData.length)];
+if(empty.indexOf("_") < 0){
+
+wordChoice = wordDataLower[Math.floor(Math.random() * wordDataLower.length)];
 console.log(wordChoice);
 
-let characters = wordChoice.split("");
+characters = wordChoice.split("");
 console.log(characters);
 
-// Creating array with empty characters to show length of word
- 
+// Creating array with empty characters to show length of word, considering spaces
+
   for (i = 0; i < characters.length; i++){
-  empty.push("_");
+    if(characters[i] === " "){
+      empty.push("-");
+    }
+    else{
+    empty.push("_");
+    }
   }
 
 wordOutput.textContent = wordOutput.textContent = empty.join(" ");
 
 // Capturing current key pressed plus remaining guesses output them in html
+}
+
+}
 
 
+document.onkeyup = function(event) {
 
+  start();
 
+  guess = event.key;
+  console.log(guess);
 
-    document.onkeyup = function(event) {
+  guessOutput.textContent = guess;
 
-      guess = event.key;
-      console.log(guess);
+  guessRemaining = guessRemaining-1;
+  console.log(guessRemaining);
+
+  remainingOutput.textContent = guessRemaining;
   
-      guessOutput.textContent = guess;
 
-      guessRemaining = guessRemaining-1;
-      console.log(guessRemaining);
+  // Check if selected letter is part of characters array
 
-      remainingOutput.textContent = guessRemaining;
-      
+    checkVar = characters.indexOf(String(guess));  // why does this return false?????????
+    console.log(checkVar);
 
-      // Check if selected letter is part of characters array
+    empty[checkVar] = guess;
+  
+  // Check for 2 occurances of guess in characters array
 
-         //console.log(empty);
-         
-         
-        // console.log(characters);
+    checkVar = characters.indexOf(guess, checkVar+1);
+    empty[checkVar] = guess;
+
+  // Check for 3 occurances of guess in characters array
+
+  checkVar = characters.indexOf(guess, checkVar+2);
+  empty[checkVar] = guess;
+
+  console.log(empty);
+  
+  // Output word with remaining gaps
+
+  wordOutput.textContent = empty.join(" ");
+  
+  // store letters already guessed in array and output it
+
+  lettersUsed.push(guess);
+  console.log(lettersUsed);
+  
+  usedOutput.textContent = lettersUsed;
+  
+  // check if game was won and count and output wins
+
+  console.log(empty.indexOf("_"));
+
+  if(empty.indexOf("_") < 0){
+    wins++;  
+    console.log("Wins" + wins);
+
+    characters = [];
+    empty = [];
+    lettersUsed = [];
+    guessRemaining = 10;
+  }
     
-        checkVar = characters.indexOf(String(guess));  // why does this return false?????????
-        console.log(checkVar);
+  // reset game when player won
+  
 
-        empty[checkVar] = guess;
-      
-      // Check for 2 occurances of guess in characters array
-
-        checkVar = characters.indexOf(guess, checkVar+1);
-        empty[checkVar] = guess;
-
-      // Check for 3 occurances of guess in characters array
-
-      checkVar = characters.indexOf(guess, checkVar+2);
-      empty[checkVar] = guess;
-
-      console.log(empty);
-      
-      // Output word with remaining gaps
-
-      wordOutput.textContent = empty.join(" ");
-      
-      // store letters already guessed in array and output it
+  winOutput.textContent = wins;
     
-      lettersUsed.push(guess);
-      console.log(lettersUsed);
-      
-      usedOutput.textContent = lettersUsed;
-      
-      // check if game was won and count and output wins
-    
-      console.log(empty.indexOf("_"));
-
-      if(empty.indexOf("_") < 0){
-        wins++;  
-        console.log("Wins" + wins);
-
-        // reset game when player won
-      }
-
-      winOutput.textContent = wins;
-        
-    }
-
-      
-
-        //  for (i = 0; i < characters.length; i++){
-
-          
-
-
-
-
-          // if((characters[i] === guess) && (empty[i] === "_")){
-          //   empty[i] = guess;
-          //   }
-          
-          // else if((characters[i] != guess) && (empty[i] != "_"){
-          //   empty[i] = empty[i];
-          // }
-          // else{
-          //   empty[i] = "_";
-          // }
-      
-  //       }
-
-  //       wordOutput.textContent = empty;
-  // }
-
-
-// Generating empty output of word choice for page
-
-// for (i = 0; i < characters.length; i++){
-//   empty.push("_");
-// }
-
-// console.log(empty);
-// wordOutput.textContent = empty;
+}
