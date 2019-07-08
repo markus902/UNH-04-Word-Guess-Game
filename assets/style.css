@@ -5,10 +5,15 @@ p{
     text-align: center;
 }
 
-h1{
+h1, h3{
     font-family: 'Caveat', cursive;
     font-size: 50px;
     text-align: center;
+}
+
+h3{
+    font-size: 30p;
+    color: brown;
 }
 
 body   {
