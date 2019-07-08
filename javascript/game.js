@@ -18,6 +18,8 @@ let winOutput = document.getElementById("wins");
 let remainingOutput = document.getElementById("guess_remaining");
 let wordOutput = document.getElementById("current_word");
 let usedOutput = document.getElementById("letters_used");
+let lost = document.getElementById("lost");
+let won = document.getElementById("won");
 
 //swiching dataset to all lower case letter
 
@@ -29,31 +31,36 @@ wordDataLower = wordData.map(function toUpper(item) {
 
 function start(){
 
-// Select a word from array and split it into array
+  //delete lost or win message if on screen
 
-if(empty.indexOf("_") < 0){
+  lost.textContent = "";
+  won.textContent = "";
 
-wordChoice = wordDataLower[Math.floor(Math.random() * wordDataLower.length)];
-console.log(wordChoice);
+  // Select a word from array and split it into array 
 
-characters = wordChoice.split("");
-console.log(characters);
+  if(empty.indexOf("_") < 0){
 
-// Creating array with empty characters to show length of word, considering spaces
+  wordChoice = wordDataLower[Math.floor(Math.random() * wordDataLower.length)];
+  console.log(wordChoice);
 
-  for (i = 0; i < characters.length; i++){
-    if(characters[i] === " "){
-      empty.push("-");
+  characters = wordChoice.split("");
+  console.log(characters);
+
+  // Creating array with empty characters to show length of word, considering spaces
+
+    for (i = 0; i < characters.length; i++){
+      if(characters[i] === " "){
+        empty.push("-");
+      }
+      else{
+      empty.push("_");
+      }
     }
-    else{
-    empty.push("_");
-    }
+
+  wordOutput.textContent = wordOutput.textContent = empty.join(" ");
+
+    } 
   }
-
-wordOutput.textContent = wordOutput.textContent = empty.join(" ");
-
-  } 
-}
 
 // Capturing current key pressed plus remaining guesses output them in html
 
@@ -87,23 +94,26 @@ document.onkeyup = function(event) {
 
   wordOutput.textContent = empty.join(" ");
   
-  // Store letters already guessed in array and output it
+  // Store letters that were already guessed in array and output it, not adding letters that are already stored in leetersUsed
   
   if(lettersUsed.indexOf(guess) <= 0){
 
-  lettersUsed.push(guess);
-  console.log(lettersUsed);
+    lettersUsed.push(guess);
+    console.log(lettersUsed);
   
-  usedOutput.textContent = lettersUsed;
+    usedOutput.textContent = lettersUsed;
   
   }
-  // Check if game was won and count and output wins
+  // Check if game was won and count and output wins, reset everything if won
 
   console.log(empty.indexOf("_"));
 
   if(empty.indexOf("_") < 0){
+
     wins++;  
     console.log("Wins" + wins);
+
+    won.textContent = "You win!!!!! Press a letter key to play another round";
 
     characters = [];
     empty = [];
@@ -111,9 +121,26 @@ document.onkeyup = function(event) {
     guessRemaining = 15;
   }
     
+  // Check if game was lost, output loose message, reset if lost
+
+  else if(guessRemaining < 1){
+    
+    lost.textContent = "You loose!!!!! Press a letter key to play another round";
+    
+    characters = [];
+    empty = [];
+    lettersUsed = [];
+    guessRemaining = 15;
+  }
+
+  else{
+  }
+
+  winOutput.textContent = wins;
+  
   // Reset game when player won
   
 
-  winOutput.textContent = wins;
+ 
     
 }
