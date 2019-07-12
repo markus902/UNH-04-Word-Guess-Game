@@ -7,33 +7,39 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/style.css">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700|Caveat&display=swap" rel="stylesheet">
-    <title>Word Guess Game</title>
+    <title>The Simpsons - Name Guess Game</title>
 </head>
 <body>
     <div class="container-fluid">
-
+        
         <div class="row">
-            <div class=" col-md-8 col-sm-12 col-xs-12 d-flex pt-1 justify-content-center">
-                <img src="./images/headline.png" alt="" class="img-fluid" width="450px" height="auto">
+
+            <div class="col-md-1"></div>
+            
+            <div class=" col-md-7 col-sm-12 col-xs-12 d-flex pt-1 justify-content-center">
+                <img src="./images/headline.png" alt="" class="img-fluid">
             </div>    
 
-            <div class="col-md-4 col-sm-12 col-xs-12 d-flex pt-md-4 justify-content-md-start justify-content-sm-center justify-content-xs-center">
-                   <img src="./images/burns.png" alt="" width="200px" height="auto" class="img-fluid">
+            <div class="col-md-3 col-sm-12 col-xs-12 d-flex pt-md-4 justify-content-md-start justify-content-sm-center justify-content-center">
+                   <img src="./images/burns.png" alt=""  class="img-fluid burns">
             </div>
+
+            <div class="col-md-1"></div>
         </div>
             
-        <div class="row">   
+        <div class="row">
+            
             <div class="col-md-12 col-sm-12 col-xs-12 justify-content-center">
                 <h1 class="m-4">The Name Game</h1>
-                <h3 id="lost"></h3>
-                <h3 id="won"></h3>
+                <h2 id="lost"></h2>
+                <h2 id="won"></h2>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="text_container">
-                    <p>Press a letter to get started!</p>
+                    <h4>Try to guess the name of a character form the best show in the world. Press a letter to get started!</h4>
                     <br>
 
                     <p>Your Guess</p>
@@ -60,15 +66,21 @@
                     <p>Wins</p>
 
                     <p id="wins"></p>
+
+                    <p>Losses</p>
+
+                    <p id="losses"></p>
                 
                 </div>
     
             </div>
 
         
-        </div> </div>
+        </div>
 
-        <img src="./images/dad.png" alt="" class="dad">
+    
+        <div class="d-flex justify-content-center"><img src="./images/dad.png" alt="" class="dad"></div>
+       
     </div>
 
 
