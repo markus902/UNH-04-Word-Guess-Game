@@ -47,14 +47,12 @@ function prepareRound(){
   lost.textContent = "";
   won.textContent = "";
 
-  // Select a word from array and split it into array 
+  // Select a word from array and split selection into own it into array 
 
   if(empty.indexOf("_") < 0){
 
   wordChoice = wordData[Math.floor(Math.random() * wordData.length)].toLowerCase();
-
   console.log("wordChoice: " + wordChoice);
-
   characters = wordChoice.split("");
   console.log("characters array: " + characters);
 
