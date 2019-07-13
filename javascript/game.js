@@ -4,7 +4,7 @@ let wordChoice
 let wins = 0;
 let losses = 0;
 let lettersUsed = [];
-let guessRemaining = 0;
+let guessRemaining = 15;
 let empty = [];
 let characters = [];
 
