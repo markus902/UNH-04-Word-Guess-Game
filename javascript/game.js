@@ -69,9 +69,8 @@ function prepareRound(){
       empty.push("_");
       }
     }
-  
-    wordOutput.textContent = wordOutput.textContent = empty.join(" ");
-      } 
+      wordOutput.textContent = wordOutput.textContent = empty.join(" ");
+  }
 }
 
 function gameWorkflow(event) {
@@ -84,6 +83,7 @@ function gameWorkflow(event) {
     let checkVar = characters.indexOf(guess, i);
     empty[checkVar] = guess;
   }
+
   wordOutput.textContent = empty.join(" ");
   // Store letters that were already guessed in array and output it, not adding letters that are already stored in leetersUsed
   if (lettersUsed.indexOf(guess) <= 0) {
@@ -101,6 +101,7 @@ function winOrLost() {
     audio.play();
     reset();
   }
+
   else if (guessRemaining < 1) {
     losses++;
     lost.textContent = "You loose!!!!! We were looking for " + wordChoice + ". Press a key to play another round!";
