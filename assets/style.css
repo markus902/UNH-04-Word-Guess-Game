@@ -49,6 +49,16 @@ img.dad{
 
 }
 
+img.headline{
+    width: 650px;
+    height: 288px;
+}
+
+img.burns{
+    width: 220px;
+    height: 220px;
+}
+
 #used{
     display: block;
 }
@@ -82,13 +92,13 @@ div.message{
     }
 
     img.headline{
-        max-width: 170px;
-        max-height: auto;
+        width: auto;
+        height: auto;
     }
 
     img.burns{
-        max-width: 200px;
-        max-height: 200px;
+        width: 100px;
+        height: 100px;
     }
 }
 
@@ -100,6 +110,14 @@ div.message{
     h4{
         font-size: 35px;
     }
+    img.headline{
+        width: auto;
+        height: auto;
+    }
 
+    img.burns{
+        width: auto;
+        height: auto;
+    }
 }
 
